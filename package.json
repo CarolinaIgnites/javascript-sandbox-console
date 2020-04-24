@@ -1,6 +1,6 @@
 {
     "name": "@madisetti/web-sandbox",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "Pretty javascript developer console for when you don't want to open inspector.",
     "main": "index.js",
     "sideEffects": [

@@ -12,7 +12,7 @@ var Sandbox = {
     },
     initialize : function() {
       // Set up the iframe sandbox
-      this.iframeSetup(this.iframe);
+      this.iframeSetup(this.get('iframe'));
 
       // When the Model is destroyed (eg. via ':clear'), erase the current
       // history as well
@@ -166,8 +166,8 @@ var Sandbox = {
     },
 
     // The templating functions for the View and each history item
-    template : _.template($('#tplSandbox').html().toString()),
-    format : _.template($('#tplCommand').html().toString()),
+    template : _.template($('#tplSandbox').html()),
+    format : _.template($('#tplCommand').html()),
 
     // Renders the Sandbox View initially and stores references to the elements
     render : function() {
@@ -201,7 +201,7 @@ var Sandbox = {
           .attr('rows', this.currentHistory.split("\n").length);
 
       // Scroll the output to the bottom, so that new commands are visible
-      this.output.scrollTop(this.output[0].scrollHeight - this.output.height());
+      if(this.output.length) this.output.scrollTop(this.output[0].scrollHeight - this.output.height());
     },
 
     // Manually set the value in the sandbox textarea and focus it ready to
@@ -268,8 +268,7 @@ var Sandbox = {
       // Enter submits the command
       if (e.which === 13) {
         e.preventDefault();
-        var val = this.textarea.val();
-
+        var val = e.target.value;
         // If shift is down, do a carriage return
         if (this.ctrl) {
           this.currentHistory = val + "\n";

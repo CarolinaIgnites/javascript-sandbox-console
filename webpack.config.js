@@ -6,7 +6,7 @@ const fs = require('fs');
 const encode = require("./src/encode.js");
 
 module.exports = {
-  entry : {'sandbox' : './src/index.js'},
+  entry : {'sandbox' : './src/entry.js'},
   output : {
     path : path.join(__dirname, 'dist'),
     filename : 'bundle.[name].js',

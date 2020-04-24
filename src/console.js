@@ -28,8 +28,14 @@ let C = {
     let a = []; // For V8 optimization
     for (let i = 0, n = arguments.length; i < n; i++) {
       let message = arguments[i].message;
-      let line = arguments[i].stack.replace(/\([^:]*:[^:]*:/g, "(line ");
-      line = line.split(" ").slice(1).join(" ").replace(/\n$/, "");
+
+      let trace = (new Error).stack.split("\n")[2].split(":");
+      let line = (trace[trace.length - 2] | 0);
+      line = "(line " + line + ")";
+      if (arguments[i].stack) {
+        line = arguments[i].stack.replace(/\([^:]*:[^:]*:/g, "(line ");
+        line = line.split(" ").slice(1).join(" ").replace(/\n$/, "");
+      }
       a.push({command : line, result : message, _class : "error"});
     }
     this.dispatchEvent("error", a);

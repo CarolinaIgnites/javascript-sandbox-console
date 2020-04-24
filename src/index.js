@@ -11,6 +11,7 @@ window.js_beautify = js_beautify;
 require("./sandbox.css");
 require("./sandbox.js");
 
+/*
 jQuery(document).ready(function($) {
   // Create the sandbox:
   window.sandbox = new Sandbox.View({
@@ -21,3 +22,4 @@ jQuery(document).ready(function($) {
     })
   });
 });
+*/
